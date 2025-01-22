@@ -14,14 +14,18 @@ This project demonstrates GPU-accelerated tensor operations using Apple's Metal 
 ## Directory Structure
 
 ```plaintext
-├── include
+├── include/
+│   ├── MetalExecutor.h
 │   └── Tensor.h
-├── src
+├── src/
 │   ├── main.cpp
+│   ├── MetalExecutor.cpp
 │   └── Tensor.cpp
-├── shaders
+├── shaders/
 │   └── tensor.metal
-├── build
+├── build/
+│   ├── tensor_app
+│   └── tensor.metallib
 ├── Makefile
 └── README.md
 ```
@@ -47,7 +51,7 @@ Clean the build directory: `make clean`
 
 ## Metal Shader Details
 
-The `shader/tensor.metal` file defines two GPU compute functions:
+The `shaders/tensor.metal` file defines two GPU compute functions:
 
 - `add_tensors`: Performs element-wise addition of two tensors.
 - `multiply_tensors`: Performs element-wise multiplication of two tensors.

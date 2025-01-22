@@ -3,15 +3,15 @@ INCLUDE_DIR = include
 SHADER_DIR = shaders
 BUILD_DIR = build
 
-CPP_FILES = $(SRC_DIR)/main.cpp $(SRC_DIR)/Tensor.cpp
-H_FILES = $(INCLUDE_DIR)/Tensor.h
+CPP_FILES = $(SRC_DIR)/main.cpp $(SRC_DIR)/Tensor.cpp $(SRC_DIR)/MetalExecutor.cpp
+H_FILES = $(INCLUDE_DIR)/Tensor.h $(INCLUDE_DIR)/MetalExecutor.h
 SHADER_FILES = $(SHADER_DIR)/tensor.metal
 METALLIB = $(BUILD_DIR)/tensor.metallib
 
 CXX = clang++
-CXXFLAGS = -x objective-c++ -std=c++17 -I$(INCLUDE_DIR) -framework Metal -framework Foundation
+CXXFLAGS = -x objective-c++ -std=c++17 -O3 -march=native -flto -I$(INCLUDE_DIR) -framework Metal -framework Foundation
 
-METAL = xcrun -sdk macosx metal
+METAL = xcrun -sdk macosx metal -O3
 METALLIB_CMD = xcrun -sdk macosx metallib
 
 all: $(METALLIB) tensor_app
